@@ -18,20 +18,27 @@
 
     {{> theme_boost/navbar }}
 
-    <section class="dashboard_sidebar dn-1199">
-        <div class="dashboard_sidebars">
-            <div class="user_board">
-                <div class="dashbord_nav_list">
-                    {{{ output.user_menu }}}
-                </div>
-                <div class="pl30 pr30">
-                    {{{ leftblocks }}}
+    {{#output.if_dashboard_sidebar}}
+        <section class="dashboard_sidebar dn-1199">
+            <div class="dashboard_sidebars">
+                <div class="user_board">
+                    <div class="dashbord_nav_list">
+                        {{{ output.user_menu }}}
+                        {{#output.edly_if_admin}}
+                        <ul>
+                            <li><a href="{{{ output.site_url }}}/admin/settings.php?section=themesettingedly"><i class='bx bxs-edit' ></i> Edly Options</a></li>
+                        </ul>
+                    {{/output.edly_if_admin}}
+                    </div>
+                    <div class="pl30 pr30">
+                        {{{ leftblocks }}}
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    {{/output.if_dashboard_sidebar}}
 
-    <div class="our-dashbord dashbord">
+    <div class="our-dashbord dashbord {{^output.if_dashboard_sidebar}}dashbord-sidebar-hidden{{/output.if_dashboard_sidebar}}">
         <div class="dashboard_main_content">
             <div class="container-fluid">
                 <div class="main_content_container">

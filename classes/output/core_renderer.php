@@ -506,6 +506,17 @@ class core_renderer extends \core_renderer {
         }
     }
 
+    public function if_dashboard_sidebar() {
+        $hide_dashboard_sidebar       = '';
+        $hide_dashboard_sidebar       = theme_edly_get_setting('hide_dashboard_sidebar');
+
+        if($hide_dashboard_sidebar == '1'){
+            return false;
+        }else{
+            return true;
+        }
+    }
+
     /**
      * course overview
      *
@@ -529,6 +540,24 @@ class core_renderer extends \core_renderer {
         global $CFG;
 
         return $CFG->wwwroot . "/theme/edly/pix";
+    }
+
+    public function site_url() {
+        global $CFG;
+        return $CFG->wwwroot;
+    }
+
+    /**
+    * if admin
+    *
+    * @return string
+    */
+    public function edly_if_admin() {
+        if (is_siteadmin()) {
+            return true;
+        }else{
+            return false;
+        }
     }
 
     /**
@@ -569,6 +598,12 @@ class core_renderer extends \core_renderer {
         global $CFG;
         $search_placeholder = '';
         $search_placeholder = theme_edly_get_setting('search_placeholder', true);
+
+        if(class_exists('filter_multilang2')){
+            $filter = new filter_multilang2();
+            $search_placeholder = $filter->filter($search_placeholder);
+        }
+
         $wwwroot = $CFG->wwwroot;
 
         return '

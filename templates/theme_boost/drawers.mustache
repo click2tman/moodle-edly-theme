@@ -13,8 +13,6 @@
 </div>
 {{/preloader}}
 
-{{output.edly_if_user_student}}
-
 <div id="wrapper page-wrapper" class="edly-page-wrapper {{#output.if_edly_guest}}edly-guest-is-active-main{{/output.if_edly_guest}}  body-{{output.edly_is_siteadmin}}">
 
     {{> theme_boost/navbar }}
@@ -111,9 +109,6 @@
             {{{ output.standard_top_of_body_html }}}
 
             <div>
-                <div id="edlys-settings-menu-container2" class="edlys-settings-menu-container">
-                    {{{ output.full_header }}}
-                </div>
 
                 {{#output.if_hide_page_bottom_content}}<div class="if_hide_page_bottom_content d-none">{{/output.if_hide_page_bottom_content}}
                     <div id="page" class="container d-print-block bottom-region-main-box">
@@ -130,6 +125,10 @@
 
                                         {{{ addblockbutton }}}
                                         <div id="region-main" {{#hasblocks}}class="edly-has-blocks {{#output.if_edly_guest}}edly-guest-is-active{{/output.if_edly_guest}}"{{/hasblocks}} aria-label="{{#str}}content{{/str}}">
+
+                                            <div class="edmo-full-header">
+                                                {{{ output.full_header }}}
+                                            </div>
 
                                             {{#secondarymoremenu}}
                                                 <div class="secondary-navigation d-print-none">

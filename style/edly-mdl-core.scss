@@ -129,9 +129,6 @@
             text-align: center;
             width: 43px;
         }
-        img {
-            width: 50px;
-        }
     }
     li:first-child {
         margin-right: 20px;
@@ -1788,4 +1785,14 @@ div#edlys-settings-menu-container2, .secondary-navigation.d-print-none {
     font-size: 14px;
     left: -25px;
     bottom: -18px;
+}
+
+.dashbord-sidebar-hidden {
+    .dashboard_main_content {
+        padding-left: 0 !important;
+    }
+}
+
+.page-context-header {
+    display: flex;
 }

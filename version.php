@@ -36,4 +36,4 @@ $plugin->dependencies = [
 $plugin->maturity = MATURITY_STABLE;
 
 // This is the named version.
-$plugin->release = '1.7';
+$plugin->release = '1.8';

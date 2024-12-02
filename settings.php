@@ -41,13 +41,6 @@ if ($ADMIN->fulltree) {
     */
     $page = new admin_settingpage('theme_edly_general', get_string('generalsettings', 'theme_edly'));
 
-        // Back to Top
-        $setting = new admin_setting_configselect('theme_edly/back_to_top', get_string('back_to_top', 'theme_edly') , get_string('back_to_top_desc', 'theme_edly') , null, array(
-            '0' => 'Visible',
-            '1' => 'Hidden'
-        ));
-        $page->add($setting);
-
         // Preloader
         $setting = new admin_setting_configselect('theme_edly/preloader', get_string('preloader', 'theme_edly') , get_string('preloader_desc', 'theme_edly') , null, array(
             '0' => 'Visible',
@@ -61,6 +54,20 @@ if ($ADMIN->fulltree) {
         $description = get_string('favicon_desc', 'theme_edly');
         $setting = new admin_setting_configstoredfile($name, $title, $description, 'favicon');
         $setting->set_updatedcallback('theme_reset_all_caches');
+        $page->add($setting);
+
+        // Global Banner
+        $setting = new admin_setting_configselect('theme_edly/hide_global_banner', get_string('hide_global_banner', 'theme_edly') , get_string('hide_global_banner_desc', 'theme_edly') , null, array(
+            '0' => 'Visible',
+            '1' => 'Hidden'
+        ));
+        $page->add($setting);
+
+        // Back to Top
+        $setting = new admin_setting_configselect('theme_edly/back_to_top', get_string('back_to_top', 'theme_edly') , get_string('back_to_top_desc', 'theme_edly') , null, array(
+            '0' => 'Visible',
+            '1' => 'Hidden'
+        ));
         $page->add($setting);
 
         // Preset files setting.
@@ -112,12 +119,46 @@ if ($ADMIN->fulltree) {
         $setting->set_updatedcallback('theme_reset_all_caches');
         $page->add($setting);
 
+        // Gradient Color 
+        $name = 'theme_edly/gradientcolor1';
+        $title = 'Gradient Color Left';
+        $description = "Add theme gradient color";
+        $default = '#FD1E43';
+        $setting = new admin_setting_configcolourpicker($name, $title, $description, $default);
+        $setting->set_updatedcallback('theme_reset_all_caches');
+        $page->add($setting);
+
+        // Gradient Color 
+        $name = 'theme_edly/gradientcolor2';
+        $title = 'Gradient Color Right';
+        $description = "Add theme gradient color";
+        $default = '#F4197D';
+        $setting = new admin_setting_configcolourpicker($name, $title, $description, $default);
+        $setting->set_updatedcallback('theme_reset_all_caches');
+        $page->add($setting);
+
+        // Gradient Color 
+        $name = 'theme_edly/soft_gradientcolor';
+        $title = 'Soft Gradient Color';
+        $description = "Add theme soft gradient color";
+        $default = '#FFADCF';
+        $setting = new admin_setting_configcolourpicker($name, $title, $description, $default);
+        $setting->set_updatedcallback('theme_reset_all_caches');
+        $page->add($setting);
+
         // Footer Color 
         $name = 'theme_edly/footer_bg';
         $title = get_string('footer_bg', 'theme_edly');
         $default = '#F5F6F9';
         $setting = new admin_setting_configcolourpicker($name, $title, '', $default);
         $setting->set_updatedcallback('theme_reset_all_caches');
+        $page->add($setting);
+
+        // Hide Dashboard Sidebar
+        $setting = new admin_setting_configselect('theme_edly/hide_dashboard_sidebar', 'Dashboard Sidebar' , '' , null, array(
+            '0' => 'Visible',
+            '1' => 'Hidden'
+        ));
         $page->add($setting);
 
         // Hide Course Curriculum For Guest Access
@@ -127,10 +168,24 @@ if ($ADMIN->fulltree) {
         ));
         $page->add($setting);
 
+        // Course Card Content Limit
+        $name = 'theme_edly/cdwl';
+        $title = 'Course Card Description Limit';
+        $setting = new admin_setting_configtext($name, $title, '', '15');
+        $setting->set_updatedcallback('theme_reset_all_caches');
+        $page->add($setting);
+
         // Free Course Price
         $name = 'theme_edly/free_course_price';
         $title = get_string('free_course_price', 'theme_edly');
         $setting = new admin_setting_configtext($name, $title, '', '');
+        $setting->set_updatedcallback('theme_reset_all_caches');
+        $page->add($setting);
+
+        // Students
+        $name = 'theme_edly/total_student';
+        $title = 'Course Total Students Text';
+        $setting = new admin_setting_configtext($name, $title, '', 'Students');
         $setting->set_updatedcallback('theme_reset_all_caches');
         $page->add($setting);
 
@@ -141,18 +196,18 @@ if ($ADMIN->fulltree) {
         $setting->set_updatedcallback('theme_reset_all_caches');
         $page->add($setting);
 
+        // Enroll Button
+        $name = 'theme_edly/enroll_btn';
+        $title = 'Enroll Button Text';
+        $setting = new admin_setting_configtext($name, $title, '', '');
+        $setting->set_updatedcallback('theme_reset_all_caches');
+        $page->add($setting);
+
         $name = 'theme_edly/hide_banner';
         $title = get_string('hide_banner', 'theme_edly');
         $description = get_string('hide_banner_desc', 'theme_edly');
         $setting = new admin_setting_configtextarea ($name, $title, $description, '');
         $setting->set_updatedcallback('theme_reset_all_caches');
-        $page->add($setting);
-
-        // Global Banner
-        $setting = new admin_setting_configselect('theme_edly/hide_global_banner', get_string('hide_global_banner', 'theme_edly') , get_string('hide_global_banner_desc', 'theme_edly') , null, array(
-            '0' => 'Visible',
-            '1' => 'Hidden'
-        ));
         $page->add($setting);
         
         $name = 'theme_edly/hide_page_bottom_content';

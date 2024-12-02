@@ -4,7 +4,7 @@
   --transition: .6s;
   --main-color: [[setting:brandcolor]];
   --optional-color: [[setting:secondarycolor]];
-  --gradient-color: linear-gradient(90deg, #FD1E43 0%, #F4197D 100%);
+  --gradient-color: linear-gradient(90deg, [[setting:gradientcolor1]] 0%, [[setting:gradientcolor2]] 100%);
   --footerBG: [[setting:footer_bg]];
   --paragraph-color: #869199;
   --whiteColor: #ffffff;

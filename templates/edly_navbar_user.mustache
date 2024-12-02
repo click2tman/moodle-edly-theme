@@ -3,13 +3,15 @@
 
     {{{ output.navbar_plugin_output }}}
     
-    {{#primarymoremenu}}
-        <li class="user_setting edly-settings-nav">
-            <div class="dropdown">
-                <a class="notification-icon" href="{{{ config.wwwroot }}}/admin/search.php"><i class='icon bx bx-cog'></i></a>
-            </div>
-        </li>
-    {{/primarymoremenu}}
+    {{#output.edly_is_siteadmin}}
+        {{#primarymoremenu}}
+            <li class="user_setting edly-settings-nav">
+                <div class="dropdown">
+                    <a class="notification-icon" href="{{{ config.wwwroot }}}/admin/search.php"><i class='icon bx bx-cog'></i></a>
+                </div>
+            </li>
+        {{/primarymoremenu}}
+    {{/output.edly_is_siteadmin}}
 
     <li>
         {{#usermenu}}

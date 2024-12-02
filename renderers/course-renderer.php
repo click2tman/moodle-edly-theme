@@ -238,7 +238,12 @@ class theme_edly_core_course_renderer extends core_course_renderer {
         $coursenamelink = new moodle_url('/course/view.php', array('id' => $course->id));
         $edly_context = context_course::instance($course->id);
         $numberofusers = count_enrolled_users($edly_context);
-        $category = format_text($PAGE->category->name, FORMAT_HTML, array('filter' => true));
+        if (isset($PAGE->category) && is_object($PAGE->category)) {
+            $category = format_text($PAGE->category->name, FORMAT_HTML, array('filter' => true));
+        } else {
+            $category = ''; 
+        }
+        
 
         // Display course contacts. See core_course_list_element::get_course_contacts().
         if ($course->has_course_contacts()) {
@@ -271,9 +276,11 @@ class theme_edly_core_course_renderer extends core_course_renderer {
             $teacher = $teacher->name;
         endforeach;
          $contenttext = '';
-         
-         $edlyCourseDescription = strip_tags($edlyCourseHandler->edlyGetCourseDescription($course->id, 99999999999999));
-         $edlyCourseDescription = substr($edlyCourseDescription, 0, 98);
+        
+        $edlyCourseDescription = strip_tags($edlyCourseHandler->edlyGetCourseDescription($course->id, 99999999999999));
+        $edlyWords = explode(' ', $edlyCourseDescription);
+        $wordLimit = get_config('theme_edly', 'cdwl') ?: 15;
+        $edlyCourseDescription = implode(' ', array_slice($edlyWords, 0, $wordLimit));
 
          $contenttext .= '
             <div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="70" data-aos-duration="700" data-aos-once="true">
@@ -315,7 +322,7 @@ class theme_edly_core_course_renderer extends core_course_renderer {
                             </li>
                             <li>
                                 <i class="ri-user-2-line"></i>
-                                '.$edlyCourse->enrolments.' '.get_string('total_student', 'theme_edly').'
+                                '.$edlyCourse->enrolments.' '.get_config('theme_edly', 'total_student') .'
                             </li>
                         </ul>
                     </div>

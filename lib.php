@@ -96,6 +96,24 @@ function theme_edly_process_css($css, $theme) {
     if(is_null($replacement)){$replacement = '#1EA69A';}
     $css = str_replace($tag, $replacement, $css);
 
+    $setting = $theme->settings->gradientcolor1;
+    $tag = '[[setting:gradientcolor1]]';
+    $replacement = $setting;
+    if(is_null($replacement)){$replacement = '#FD1E43';}
+    $css = str_replace($tag, $replacement, $css);
+
+    $setting = $theme->settings->gradientcolor2;
+    $tag = '[[setting:gradientcolor2]]';
+    $replacement = $setting;
+    if(is_null($replacement)){$replacement = '#F4197D';}
+    $css = str_replace($tag, $replacement, $css);
+
+    $setting = $theme->settings->soft_gradientcolor;
+    $tag = '[[setting:soft_gradientcolor]]';
+    $replacement = $setting;
+    if(is_null($replacement)){$replacement = '#FFADCF';}
+    $css = str_replace($tag, $replacement, $css);
+
     $setting = $theme->settings->footer_bg;
     $tag = '[[setting:footer_bg]]';
     $replacement = $setting;

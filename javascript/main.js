@@ -3,18 +3,36 @@
         "use strict";
 
 		$(document).ready(function() {
+
             var current_site_url = $(".navbar-area .navbar .navbar-brand").attr("href");
-            if(current_site_url){
-				if(current_site_url != 'http://localhost/moodle/edly/'){
-					$('a').each(function(){
-						var url = $(this).attr("href");
-						if(url == "http://localhost/moodle/edly/"){
-							url = url.replace("http://localhost/moodle/edly/", current_site_url);
-							$(this).attr('href', url);
+			if (current_site_url) {
+				var local_urls = [
+					'http://localhost/moodle/edly/',
+					'http://localhost/moodle/edly/',
+					'http://localhost:8888/moodle/edly/',
+					'http://localhost:8888/moodle/edly-4.4/',
+					'http://localhost:8888/moodle/edly-4.3/'
+				];
+
+				// Function to replace old URLs with the current site URL
+				function replaceUrls(element, attribute) {
+					$(element).each(function () {
+						var url = $(this).attr(attribute);
+						if (url) {
+							local_urls.forEach(function (local_url) {
+								if (url.includes(local_url)) {
+									url = url.replace(local_url, current_site_url);
+									$(this).attr(attribute, url);
+								}
+							}, this);
 						}
-					}); 
+					});
 				}
-            }
+
+				// Replace URLs for 'a' and 'img' elements
+				replaceUrls('a', 'href');
+				replaceUrls('img', 'src');
+			}
 
 			// Gallery
 			$('.single-gallery-item a').magnificPopup({

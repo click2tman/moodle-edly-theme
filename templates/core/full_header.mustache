@@ -15,37 +15,48 @@
     along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 }}
 {{!
-    @template theme_classic/header
+    @template theme_edly/full_header
 
     This template renders the header.
 
     Example context (json):
     {
         "contextheader": "context_header_html",
+        "settingsmenu": "settings_html",
         "hasnavbar": false,
         "navbar": "navbar_if_available",
-        "courseheader": "course_header_html"
+        "courseheader": "course_header_html",
+        "welcomemessage": "welcomemessage"
     }
 }}
-<div class="edly-breadcrumb-widgets clearfix">
-{{#settingsmenu}}
-    <div id="edly-settings-menu" class="context-header-settings-menu">
-    {{{settingsmenu}}}
+<header id="page-header" class="edly-container-fluid">
+    <div class="d-flex flex-wrap">
+        <div class="ml-auto d-flex">
+            {{{pageheadingbutton}}}
+        </div>
+        <div id="course-header">
+            {{{courseheader}}}
+        </div>
     </div>
-{{/settingsmenu}}
-{{#headeractions}}
-    <div class="header-actions-container flex-shrink-0" data-region="header-actions-container">
-    <div class="header-action ml-2">{{{.}}}</div>
+    <div class="d-sm-flex align-items-center">
+        {{^welcomemessage}}
+            {{#contextheader}}
+                <div class="mr-auto">
+                    {{{contextheader}}}
+                </div>
+            {{/contextheader}}
+        {{/welcomemessage}}
+        {{> core/welcome }}
+        <div class="header-actions-container ml-auto" data-region="header-actions-container">
+            {{#headeractions}}
+                <div class="header-action ml-2">{{{.}}}</div>
+            {{/headeractions}}
+        </div>
+
+        {{#hasnavbar}}
+            <div class="d-none" id="page-navbar">
+                {{{navbar}}}
+            </div>
+        {{/hasnavbar}}
     </div>
-{{/headeractions}}
-{{#pageheadingbutton }}
-    <div id="page-heading-button">
-    {{{pageheadingbutton}}}
-    </div>
-{{/pageheadingbutton }}
-{{#courseheader }}
-    <div id="course-header">
-    {{{courseheader}}}
-    </div>
-{{/courseheader }}
-</div>
+</header>

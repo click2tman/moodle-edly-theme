@@ -70,7 +70,7 @@ Default CSS
     --transition: .6s;
     --main-color: [[setting:brandcolor]];
     --optional-color: [[setting:secondarycolor]];
-    --gradient-color: linear-gradient(90deg, #FD1E43 0%, #F4197D 100%);
+    --gradient-color: linear-gradient(90deg, [[setting:gradientcolor1]] 0%, [[setting:gradientcolor2]] 100%);
     --footerBG: [[setting:footer_bg]];
     --paragraph-color: #869199;
     --whiteColor: #ffffff;
@@ -78,6 +78,7 @@ Default CSS
     --black-color: #3B2A56;
     --font-family: 'Nunito', sans-serif;
     --HeadingColor: #0d0c0c;
+    --soft_gradientcolor: [[setting:soft_gradientcolor]];
 }
 a {
     text-decoration: none;
@@ -153,7 +154,7 @@ Default Btn CSS
     position: relative;
     z-index: 1;
     overflow: hidden;
-    filter: drop-shadow(-5px 15px 30px rgba(244, 25, 125, 0.35));
+    filter: drop-shadow(-5px 15px 30px var(--soft_gradientcolor));
 
     &:before {
         content: '';
@@ -2587,7 +2588,7 @@ Success Area CSS
 }
 
 // Divider CSS
-.divider {
+.edly-divider {
     width: 100%;
     position: absolute;
     height: 100px;
@@ -6238,7 +6239,7 @@ Footer Area CSS
             &:first-child {
                 a {
                     img {
-                        filter: drop-shadow(-5px 15px 30px rgba(244, 25, 125, 0.35));
+                        filter: drop-shadow(-5px 15px 30px var(--soft_gradientcolor));
                     }
                 }
             }
@@ -7398,4 +7399,11 @@ Blog Details Area CSS
 .blog-details-desc .meta-list {
     margin-bottom: 30px;
     margin-bottom: 0;
+}
+
+.course-content {
+    .activityiconcontainer.smaller {
+        width: 40px;
+        height: 40px;
+    }
 }

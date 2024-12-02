@@ -139,7 +139,7 @@ class edlyCourseHandler {
         $edlyRender->updatedDate           =     '';
         $edlyRender->updatedDate         =     userdate($courseUpdated, get_string('strftimedatefullshort', 'langconfig'));
         $edlyRender->title             =     '<h3><a href="'. $edlyCourse->url .'">'. $edlyCourse->fullName .'</a></h3>';
-        $edlyRender->coverImage        =     '<img class="img-whp" src="'. $contentimages .'" alt="'.$edlyCourse->fullName.'">';
+        $edlyRender->coverImage        =     '<img class="img-whp" src="'. $contentimages .'" alt="'.strip_tags($edlyCourse->fullName).'">';
         $edlyRender->ImageUrl = $contentimages;
         /* @edlyBreak */
         $edlyCourse->edlyRender = $edlyRender;
